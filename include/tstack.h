@@ -6,26 +6,25 @@
 
 template<typename T, int size>
 class TStack {
-private:
+ private:
     T* ptr;
     int x;
-public:
+
+ public:
     TStack() : x(0) {
         ptr = new T[size];
     }
     void pushup(const T& c) {
         if (size - 1 >= x) {
             ptr[x++] = c;
-        }
-        else {
+        } else {
             throw std::string("Fall !");
         }
     }
     T popback() {
         if (x > 0) {
             return ptr[--x];
-        }
-        else {
+        } else {
             throw std::string("Empty");
         }
     }
@@ -35,8 +34,7 @@ public:
     T ElemUp() const {
         if (x > 0) {
             return ptr[x - 1];
-        }
-        else {
+        } else {
             throw std::string("Fall!");
         }
     }
