@@ -17,32 +17,26 @@ std::string infx2pstfx(std::string inf) {
                 if (flag == 1) {
                     line = line + " " + n;
                     flag = 0;
-                }
-                else {
+                } else {
                     line = line + n;
                 }
-            }
-            else {
+            } else {
                 if (n == '(') {
                     stack.pushup(n);
-                }
-                else {
+                } else {
                     flag = 1;
                     if (stack.IfZero()) {
                         stack.pushup(n);
-                    }
-                    else {
+                    } else {
                         if (n == ')') {
                             while (stack.ElemUp() != '(') {
                                 line = line + " " + stack.popback();
                             }
                             stack.popback();
-                        }
-                        else {
+                        } else {
                             if (prioty(n) > prioty(stack.ElemUp())) {
                                 stack.pushup(n);
-                            }
-                            else {
+                            } else {
                                 while ((!stack.IfZero()) &&
                                     (prioty(n) <= prioty(stack.ElemUp()))) {
                                     line = line + " " + stack.popback();
@@ -73,22 +67,19 @@ int eval(std::string pref) {
             if (flag == 0) {
                 if (('0' <= b) && (b <= '9')) {
                     line += b;
-                }
-                else {
+                } else {
                     if (line == "") {
                         int y = stack1.popback();
                         int x = stack1.popback();
                         int res = schet(x, y, b);
                         stack1.pushup(res);
                         flag = 1;
-                    }
-                    else {
+                    } else {
                         stack1.pushup(stoi(line));
                         line = "";
                     }
                 }
-            }
-            else {
+            } else {
                 flag = 0;
             }
         }
